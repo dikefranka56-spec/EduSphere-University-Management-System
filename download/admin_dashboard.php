@@ -1,0 +1,8 @@
+<?php $page_title='Admin Dashboard'; require 'header.php'; require_role('admin');
+$stats=[]; foreach(['users'=>'users','students'=>'students','lecturers'=>'lecturers','courses'=>'courses','enrollments'=>'enrollments'] as $k=>$t){ $stats[$k]=$pdo->query("SELECT COUNT(*) c FROM $t")->fetch()['c']; }
+$stats['outstanding']=$pdo->query("SELECT COALESCE(SUM(amount-amount_paid),0) s FROM fee_invoices WHERE status!='paid'")->fetch()['s'];
+$ann=$pdo->query("SELECT * FROM announcements ORDER BY created_at DESC LIMIT 5")->fetchAll();
+?><div class="cards"><div class="card"><h3>Students</h3><div class="big"><?=$stats['students']?></div></div><div class="card"><h3>Lecturers</h3><div class="big"><?=$stats['lecturers']?></div></div><div class="card"><h3>Courses</h3><div class="big"><?=$stats['courses']?></div></div><div class="card"><h3>Enrolments</h3><div class="big"><?=$stats['enrollments']?></div></div><div class="card"><h3>Outstanding Fees (₦)</h3><div class="big"><?=number_format($stats['outstanding'],2)?></div></div></div>
+<div class="grid2"><div class="card"><h3>Quick actions</h3><p><a class="btn" href="students.php">Manage Students</a> <a class="btn teal" href="courses.php">Manage Courses</a> <a class="btn ghost" href="reports.php">View Reports</a></p></div>
+<div class="card"><h3>Recent announcements</h3><?php foreach($ann as $a) echo '<p><b>'.e($a['title']).'</b><br><span class="muted">'.e(substr($a['body'],0,120)).'</span></p>'; if(!$ann) echo '<p class="muted">No announcements yet.</p>'; ?></div></div>
+<?php require 'footer.php'; ?>

@@ -1,0 +1,4 @@
+<?php $page_title='Audit Logs'; require 'header.php'; require_role('admin');
+$rows=$pdo->query("SELECT a.*,u.full_name,u.email FROM audit_logs a LEFT JOIN users u ON u.id=a.user_id ORDER BY a.id DESC LIMIT 500")->fetchAll();
+?><div class="table-wrap"><table><thead><tr><th>Time</th><th>User</th><th>Action</th><th>Details</th><th>IP</th></tr></thead><tbody><?php foreach($rows as $r) echo '<tr><td>'.e($r['created_at']).'</td><td>'.e($r['full_name']??'System').'</td><td>'.e($r['action']).'</td><td>'.e($r['details']).'</td><td>'.e($r['ip_address']).'</td></tr>'; ?></tbody></table></div>
+<?php require 'footer.php'; ?>

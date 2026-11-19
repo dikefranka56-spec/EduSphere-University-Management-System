@@ -1,0 +1,1 @@
+<?php require 'auth.php'; require_login(); $r=$_SESSION['role']; header('Location: '.($r==='admin'?'admin_dashboard.php':($r==='student'?'student_dashboard.php':'lecturer_dashboard.php'))); exit;
