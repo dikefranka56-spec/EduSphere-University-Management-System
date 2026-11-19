@@ -45,9 +45,8 @@ The project demonstrates practical full-stack web development using PHP, MySQL, 
 
 Screenshots below demonstrate the application's interface and major sections.
 
-> Make sure the image filenames below match the actual filenames in your `screenshots` folder.
 
-### Login Page
+### Login Pages
 ![EduSphere Login](screenshots/login-page.png)
 
 ### Student Dashboard
