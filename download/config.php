@@ -15,7 +15,7 @@ declare(strict_types=1);
 define('DB_HOST', 'sql311.infinityfree.com');
 define('DB_NAME', 'if0_43447483_edusphere');
 define('DB_USER', 'if0_43447483');
-define('DB_PASS', 'XuDYbCHbdDRh9FE');
+define('DB_PASS', 'hidden');
 
 define('APP_NAME', 'EduSphere');
 define('BASE_URL', '');
